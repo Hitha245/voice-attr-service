@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Model weights cached locally when not using the named Docker volume
+.hf_cache/
+model_cache/
+
+# Never commit audio — caller audio is PII and must not persist (see README > Privacy)
+*.wav
+*.mp3
+*.m4a
+*.ogg
+*.flac
+*.webm
+!tests/fixtures/*.wav
+
+# Eval datasets are large and licensed separately (Common Voice etc.)
+eval/data/
+
+.env
+.DS_Store

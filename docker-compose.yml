@@ -1,0 +1,30 @@
+services:
+  voice-attr-service:
+    build: .
+    image: voice-attr-service:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+      - LOG_JSON=true
+      - PRELOAD_MODEL=true
+      - ENABLE_MODEL_FALLBACK=true
+      - ENABLE_LANGUAGE_ID=false
+      - MODEL_DEVICE=cpu
+    volumes:
+      # Named volume so the ~1.2GB model weights are downloaded once and
+      # reused across `docker compose up`/`down` cycles instead of
+      # re-fetching on every container recreation. This is model *weights*
+      # caching, not audio storage — no caller audio is ever written here
+      # (see README > Privacy).
+      - hf-cache:/home/appuser/.cache/huggingface
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 90s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  hf-cache:

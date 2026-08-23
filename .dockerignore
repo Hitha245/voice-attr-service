@@ -1,0 +1,11 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+.pytest_cache
+tests/fixtures/*.wav
+eval/data
+.hf_cache
+model_cache
+*.md
+.env
