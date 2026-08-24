@@ -3,7 +3,7 @@ services:
     build: .
     image: voice-attr-service:latest
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
       - LOG_LEVEL=INFO
       - LOG_JSON=true

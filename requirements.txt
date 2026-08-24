@@ -26,7 +26,6 @@ numpy==1.26.4
 scikit-learn==1.5.2
 
 # --- Bonus: language / accent identification ---
-openai-whisper==20231117
 
 # --- Observability ---
 python-json-logger==2.0.7
